@@ -46,23 +46,27 @@ routes.get('/api/point', (req, res) => {
 // Limpar campos (mantem campos randomicos)
 routes.get('/api/point/delete', (req, res) => {
     let points = require('../points.json');
-
-    function popPoints(point) {
-        if(point.type === 'random') {
-            return true
-        }
-        return false
-    }
+    let cleanedPoints = []
     
-    points = points.filter((popPoints))
-
-    fs.writeFile('./points.json', JSON.stringify(points), (error) => {
+    points.map((point, i) => {
+        if(point.type === 'random') {
+            cleanedPoints.push(point)
+        }
+    })
+    
+    fs.writeFile('./points.json', JSON.stringify([]), (error) => {
         if (error) {
             res.send({ points: points, status: false })
         } else {
-            res.send({ points: points, status: true })
+            fs.writeFile('./points.json', JSON.stringify(cleanedPoints), (error) => {
+                if (error) {
+                    res.send({ points: points, status: false })
+                } else {
+                    res.send({ points: points, status: true })
+                }
+            })
         }
-    });
+    })
 });
 
 module.exports = routes;
