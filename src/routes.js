@@ -16,7 +16,10 @@ routes.post('/api/point/create', (req, res) => {
             description: req.body.description, 
             latitudePlus: req.body.latitudePlus, 
             longitudePlus: req.body.longitudePlus, 
-            type: req.body.type
+            type: req.body.type,
+            latitude: req.body.latitude,
+            longitude: req.body.longitude,
+            activity: req.body.activity
         })
 
         fs.writeFile('./points.json', JSON.stringify(points), (error) => {
