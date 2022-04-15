@@ -48,7 +48,7 @@ routes.get('/api/point/delete', (req, res) => {
     let points = require('../points.json');
 
     function popPoints(point) {
-        if(point.name === '' || point.description === '' || point.type === 'random') {
+        if(point.type === 'random') {
             return true
         }
         return false
