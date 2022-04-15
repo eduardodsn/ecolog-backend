@@ -7,6 +7,10 @@ routes.post('/api/point/create', (req, res) => {
         res.status(500).send('Erro - Requisição inválida!')
     } else {
         let points = require('../points.json');
+        console.log(req.body.name)
+        console.log(req.body.description)
+        console.log(req.body.latitudePlus)
+
         points.push({
             name: req.body.name, 
             description: req.body.description, 
