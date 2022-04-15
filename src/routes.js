@@ -7,7 +7,13 @@ routes.post('/api/point/create', (req, res) => {
         res.status(500).send('Erro - Requisição inválida!')
     } else {
         let points = require('../points.json');
-        points.push({name: 'ere', description: 'reaa', latitudePlus: 0.003, longitudePlus: 0.4})
+        points.push({
+            name: req.body.name, 
+            description: req.body.description, 
+            latitudePlus: req.body.latitudePlus, 
+            longitudePlus: req.body.longitudePlus, 
+            type: req.body.type
+        })
 
         fs.writeFile('./points.json', JSON.stringify(points), (error) => {
             if (error) {
