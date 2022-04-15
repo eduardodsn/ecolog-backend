@@ -6,7 +6,7 @@ routes.post('/api/point/create', (req, res) => {
     if (!req.body) {
         res.status(500).send('Erro - Requisição inválida!')
     } else {
-        let points = require('../back.json');
+        let points = require('../points.json');
         console.log(req.body.name)
         console.log(req.body.description)
         console.log(req.body.latitudePlus)
@@ -22,7 +22,7 @@ routes.post('/api/point/create', (req, res) => {
             activity: req.body.activity
         })
 
-        fs.writeFile('./back.json', JSON.stringify(points), (error) => {
+        fs.writeFile('./points.json', JSON.stringify(points), (error) => {
             if (error) {
                 res.send({ status: false })
             } else {
@@ -34,7 +34,7 @@ routes.post('/api/point/create', (req, res) => {
 
 // Ler pontos
 routes.get('/api/point', (req, res) => {
-    let points = require('../back.json');
+    let points = require('../points.json');
 
     if (points !== []) {
         res.send({ points: points , status: true})
@@ -56,7 +56,7 @@ routes.get('/api/point/delete', (req, res) => {
     
     points = points.filter((popPoints))
 
-    fs.writeFile('./back.json', JSON.stringify(points), (error) => {
+    fs.writeFile('./points.json', JSON.stringify(points), (error) => {
         if (error) {
             res.send({ points: points, status: false })
         } else {
