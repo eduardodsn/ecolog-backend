@@ -14,8 +14,8 @@ routes.post('/api/point/create', (req, res) => {
         points.push({
             name: req.body.name, 
             description: req.body.description, 
-            latitudePlus: req.body.latitudePlus, 
-            longitudePlus: req.body.longitudePlus, 
+            latitudePlus: req.body.latitudePlus || 0, 
+            longitudePlus: req.body.longitudePlus || 0, 
             type: req.body.type,
             latitude: req.body.latitude,
             longitude: req.body.longitude,
